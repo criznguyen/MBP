@@ -1,0 +1,2 @@
+Not Checking Mosquitto Availability. Running in a non-CI environment
+Not Checking Docker Availability. Running in a non-CI environment

@@ -7,7 +7,7 @@ RUN if [ -z "$is_secure" ] ; then echo is_secure argument not provided ; else ec
 
 #Set mosquitto and plugin versions.
 #Change them for your needs.
-ENV MOSQUITTO_VERSION=1.6.9
+ENV MQTT_VERSION=1.6.9
 ENV PLUGIN_VERSION=0.7.0
 
 WORKDIR /app
@@ -16,11 +16,11 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y libwebsockets-dev libc-ares2 libc-ares-dev openssl uuid uuid-dev wget build-essential git libc-ares2 openssl uuid golang
 RUN mkdir -p mosquitto/auth mosquitto/conf.d
 
-RUN wget http://mosquitto.org/files/source/mosquitto-${MOSQUITTO_VERSION}.tar.gz
-RUN tar xzvf mosquitto-${MOSQUITTO_VERSION}.tar.gz && rm mosquitto-${MOSQUITTO_VERSION}.tar.gz 
+RUN wget http://mosquitto.org/files/source/mosquitto-${MQTT_VERSION}.tar.gz
+RUN tar xzvf mosquitto-${MQTT_VERSION}.tar.gz && rm mosquitto-${MQTT_VERSION}.tar.gz
 
 #Build mosquitto.
-RUN cd mosquitto-${MOSQUITTO_VERSION} && make WITH_WEBSOCKETS=yes && make install && cd ..
+RUN cd mosquitto-${MQTT_VERSION} && make WITH_WEBSOCKETS=yes && make install && cd ..
 
 #Get the plugin.
 RUN wget https://github.com/iegomez/mosquitto-go-auth/archive/${PLUGIN_VERSION}.tar.gz \
