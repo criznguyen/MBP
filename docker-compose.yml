@@ -9,17 +9,17 @@ services:
       - mongodb
       - iot-device
     ports:
-      - 8080:8080
+      - "8080:8080"
 
   mongodb:
     container_name: mongodb
     hostname: mongodb
-    image: amd64/mongo:5
+    image: arm64v8/mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - mongodb_volume:/data/db
 
@@ -32,19 +32,19 @@ services:
         # NOTE: change this to use mosquitto setup with(out) auth plugin installed
         is_secure: "false"
     ports:
-      - 1883:1883
-      - 1884:1884
+      - "1883:1883"
+      - "1884:1884"
     volumes:
       - mosquitto_volume:/var/lib/mosquitto
     networks:
       default:
-        ipv4_address: 172.16.238.03
+        ipv4_address: 172.16.238.3
   
   iot-device:
     container_name: iot-device
     build: ./testing/iot-device-dockerfile
     ports:
-      - 22:22
+      - "22:22"
     networks:
       default:
         ipv4_address: 172.16.238.10
