@@ -13,7 +13,7 @@ ENV PLUGIN_VERSION=0.7.0
 WORKDIR /app
 
 #Get mosquitto build dependencies.
-RUN apt-get update && apt-get install -y libwebsockets16 libwebsockets-dev libc-ares2 libc-ares-dev openssl uuid uuid-dev wget build-essential git libc-ares2 openssl uuid golang
+RUN apt-get update && apt-get install -y libwebsockets-dev libc-ares2 libc-ares-dev openssl uuid uuid-dev wget build-essential git libc-ares2 openssl uuid golang
 RUN mkdir -p mosquitto/auth mosquitto/conf.d
 
 RUN wget http://mosquitto.org/files/source/mosquitto-${MOSQUITTO_VERSION}.tar.gz
@@ -35,7 +35,7 @@ RUN export PATH=$PATH:/usr/local/go/bin && export CGO_CFLAGS="-I/usr/local/inclu
 FROM debian:stable-slim
 
 #Get mosquitto dependencies.
-RUN apt-get update && apt-get install -y libwebsockets16 libc-ares2 openssl uuid
+RUN apt-get update && apt-get install -y libwebsockets-dev libc-ares2 openssl uuid
 
 #Setup mosquitto env.
 RUN mkdir -p /var/lib/mosquitto /var/log/mosquitto 
